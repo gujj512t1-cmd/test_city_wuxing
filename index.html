@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>五行城市测验 · 生辰版</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="status-bar-time" id="current-time">9:41</div>
+    </div>
+    
+    <!-- 主要内容容器 -->
+    <div class="container">
+        <!-- 页面1: 出生日期输入页面 -->
+        <div id="birthday-container">
+            <div class="header">
+                <div class="app-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h1 class="title">输入出生日期</h1>
+                <p class="subtitle">根据出生年月日分析您的先天五行属性</p>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-title">
+                    <i class="fas fa-birthday-cake"></i>
+                    出生信息
+                </div>
+                <div class="card-content">
+                    <p>根据中国传统五行理论，每个人的出生日期对应特定的五行属性。请输入您的公历出生日期，系统将分析您的先天五行。</p>
+                </div>
+            </div>
+            
+            <div class="date-selector fade-in" style="animation-delay: 0.1s;">
+                <div class="date-group">
+                    <label class="date-label">年</label>
+                    <select class="date-input" id="year-select">
+                        <option value="">选择年份</option>
+                    </select>
+                </div>
+                <div class="date-group">
+                    <label class="date-label">月</label>
+                    <select class="date-input" id="month-select">
+                        <option value="">选择月份</option>
+                        <option value="1">1月</option>
+                        <option value="2">2月</option>
+                        <option value="3">3月</option>
+                        <option value="4">4月</option>
+                        <option value="5">5月</option>
+                        <option value="6">6月</option>
+                        <option value="7">7月</option>
+                        <option value="8">8月</option>
+                        <option value="9">9月</option>
+                        <option value="10">10月</option>
+                        <option value="11">11月</option>
+                        <option value="12">12月</option>
+                    </select>
+                </div>
+                <div class="date-group">
+                    <label class="date-label">日</label>
+                    <select class="date-input" id="day-select">
+                        <option value="">选择日期</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="card fade-in" style="animation-delay: 0.2s;">
+                <div class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    说明
+                </div>
+                <div class="card-content">
+                    <p>系统将根据您的出生日期计算出您的先天五行属性，并结合后续的性格测验，为您推荐最匹配的五行城市。</p>
+                    <p>五行分析基于出生日期与五行对应关系，结果仅供娱乐参考。</p>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary fade-in" id="birthday-next-btn" style="animation-delay: 0.3s;" disabled>
+                <i class="fas fa-arrow-right btn-icon"></i>
+                下一步，查看我的五行
+            </button>
+        </div>
+        
+        <!-- 页面2: 五行分析页面 -->
+        <div id="element-analysis-container" class="hidden">
+            <div class="header">
+                <div class="app-icon">
+                    <i class="fas fa-yin-yang"></i>
+                </div>
+                <h1 class="title">您的先天五行</h1>
+                <p class="subtitle">根据出生日期计算得出</p>
+            </div>
+            
+            <div id="element-result-container">
+                <!-- 五行结果将在这里动态生成 -->
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-title">
+                    <i class="fas fa-handshake"></i>
+                    五行相生关系
+                </div>
+                <div class="card-content">
+                    <p>相生关系：木生火，火生土，土生金，金生水，水生木。</p>
+                    <p>与您相生的五行会增强您的能量，带来好运和顺利。</p>
+                </div>
+            </div>
+            
+            <div class="card fade-in" style="animation-delay: 0.1s;">
+                <div class="card-title">
+                    <i class="fas fa-ban"></i>
+                    五行相克关系
+                </div>
+                <div class="card-content">
+                    <p>相克关系：木克土，土克水，水克火，火克金，金克木。</p>
+                    <p>与您相克的五行可能会消耗您的能量，需要注意平衡。</p>
+                </div>
+            </div>
+            
+            <div class="element-relations" id="element-relations">
+                <!-- 五行关系将在这里动态生成 -->
+            </div>
+            
+            <button class="btn btn-primary fade-in" id="analysis-next-btn" style="animation-delay: 0.2s;">
+                <i class="fas fa-play btn-icon"></i>
+                开始性格测验
+            </button>
+        </div>
+        
+        <!-- 页面3: 测验说明页面 -->
+        <div id="instruction-container" class="hidden">
+            <div class="header">
+                <div class="app-icon">
+                    <i class="fas fa-mountain-city"></i>
+                </div>
+                <h1 class="title">五行城市测验</h1>
+                <p class="subtitle">结合先天五行与性格特征</p>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    测验说明
+                </div>
+                <div class="card-content">
+                    <ul class="instruction-list">
+                        <!-- 移除了关于时间限制的描述 -->
+                        <li>本测验包含49道选择题</li>
+                        <li>选择答案后会自动进入下一题</li>
+                        <li>答题结束后，系统会结合您的先天五行和性格测验结果，为您推荐最适合的城市</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card fade-in" style="animation-delay: 0.1s;">
+                <div class="card-title">
+                    <i class="fas fa-chart-bar"></i>
+                    综合匹配系统
+                </div>
+                <div class="card-content">
+                    系统将综合考虑您的先天五行（基于出生日期）和后天性格五行（基于性格测验），通过加权算法计算出最适合您的五行属性，并推荐匹配的城市。
+                </div>
+            </div>
+            
+            <button class="btn btn-primary fade-in" id="start-btn" style="animation-delay: 0.2s;">
+                <i class="fas fa-play btn-icon"></i>
+                开始测验
+            </button>
+        </div>
+        
+        <!-- 页面4: 测验页面 -->
+        <div id="quiz-container" class="hidden">
+            <!-- 动态加载题目 -->
+        </div>
+        
+        <!-- 页面5: 结果页面 -->
+        <div id="result-container" class="hidden">
+            <div class="result-header fade-in">
+                <div class="result-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h2 class="result-title">您的五行城市匹配结果</h2>
+                <p class="result-subtitle">综合先天五行与性格测验分析</p>
+            </div>
+            
+            <div class="city-result fade-in" style="animation-delay: 0.1s;">
+                <div class="city-name" id="city-name">上海</div>
+                <div class="element-tag">
+                    <div class="element-dot element-metal"></div>
+                    <span id="element-name">金属性</span>
+                </div>
+            </div>
+            
+            <div class="score-grid fade-in" style="animation-delay: 0.2s;" id="score-grid">
+                <!-- 动态加载五行得分 -->
+            </div>
+            
+            <div class="city-description fade-in" style="animation-delay: 0.3s;">
+                <div class="description-title">
+                    <i class="fas fa-city"></i>
+                    城市解读
+                </div>
+                <div class="description-text" id="city-description">
+                    商业金融中心，金水为主，木为辅，适合喜金水的朋友，旺财运和工作机会。
+                </div>
+            </div>
+            
+            <div class="card fade-in" style="animation-delay: 0.4s;">
+                <div class="card-title">
+                    <i class="fas fa-balance-scale"></i>
+                    综合匹配说明
+                </div>
+                <div class="card-content">
+                    <p>最终结果结合了您的先天五行（占40%）和性格测验五行（占60%），为您提供最平衡的城市建议。</p>
+                    <p>考虑到您的先天五行属性与后天性格特征的结合，这个城市既能补足您命理的不足，又能匹配您的性格特点。</p>
+                </div>
+            </div>
+            
+            <div class="fade-in" style="animation-delay: 0.5s;">
+                <button class="btn btn-secondary" id="restart-btn" style="margin-bottom: 12px;">
+                    <i class="fas fa-redo btn-icon"></i>
+                    重新测验
+                </button>
+                <button class="btn btn-secondary" id="back-to-birth-btn">
+                    <i class="fas fa-calendar-alt btn-icon"></i>
+                    修改出生日期
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
