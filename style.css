@@ -1,30 +1,3 @@
-/* 快链水印样式 - 底部栏 */
-.kuailian-watermark {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  background-color: rgba(245, 245, 245, 0.9);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
-  font-size: 12px;
-  z-index: 999;
-  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
-  backdrop-filter: blur(8px);
-}
-.kuailian-watermark a {
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-  opacity: 0.8;
-}
-.kuailian-watermark a:hover {
-  color: #0066cc;
-  opacity: 1;
-}
-
 /* 五行中国风设计系统 */
 :root {
     --bg-primary: #fffef9;
@@ -78,12 +51,10 @@
 
 body {
     font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
-    background-attachment: fixed;
+    background-color: var(--bg-secondary);
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
-    padding-bottom: var(--safe-area);
 }
 
 /* 状态栏模拟 - 已隐藏 */
@@ -338,8 +309,13 @@ body {
     font-size: 16px;
     color: var(--text-primary);
     text-align: center;
-    transition: all 0.25s ease;
     font-weight: 500;
+    -webkit-appearance: menulist-button;
+    appearance: menulist-button;
+    cursor: pointer;
+    min-height: 50px;
+    position: relative;
+    z-index: 10;
 }
 
 .date-input:focus {

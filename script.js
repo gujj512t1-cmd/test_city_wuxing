@@ -1,19 +1,3 @@
-// 更新时间显示
-function updateTime() {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString('zh-CN', { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: false 
-    });
-    document.getElementById('current-time').textContent = timeString;
-}
-
-// 初始更新时间
-updateTime();
-// 每分钟更新一次时间
-setInterval(updateTime, 60000);
-
 // 初始化年份选择器（1920-2024年）
 function initYearSelector() {
     const yearSelect = document.getElementById('year-select');
