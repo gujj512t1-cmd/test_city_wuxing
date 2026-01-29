@@ -86,19 +86,9 @@ body {
     padding-bottom: var(--safe-area);
 }
 
-/* 状态栏模拟 */
+/* 状态栏模拟 - 已隐藏 */
 .status-bar {
-    height: 48px;
-    background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(255,254,249,0.95) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding: 0 20px;
-    border-bottom: 1px solid var(--border-color);
-    backdrop-filter: blur(12px);
+    display: none;
 }
 
 .status-bar-time {
